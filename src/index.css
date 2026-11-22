@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #0f2d59;
+  --accent-rgb: 15 45 89;
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #f4f5f7;
+  color: #0f172a;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.font-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'zero' 0;
+}
+
+::selection {
+  background: rgb(var(--accent-rgb) / 0.15);
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+/* Print: only the A4 document, at true size, with colours preserved. */
+.print-root {
+  display: none;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    width: 210mm;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #root > :not(.print-root) {
+    display: none !important;
+  }
+
+  .print-root {
+    display: block !important;
+  }
+
+  .print-root .paper {
+    width: 210mm !important;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  tr,
+  .break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
